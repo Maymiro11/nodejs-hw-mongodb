@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import pino from "pino";
 import pinoHttp from "pino-http";
-import { getContacts, getContactById } from "./controllers/contactsController.js";
+import { getContacts, getContactById } from "./src/controllers/contactsController.js";
 
 const logger = pino();
 const pinoMiddleware = pinoHttp({ logger });
