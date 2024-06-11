@@ -12,6 +12,7 @@ const setupServer = () => {
 
   app.use(cors());
   app.use(pinoMiddleware);
+  app.use(express.json());
 
   app.get("/contacts", getContacts);
   app.get("/contacts/:contactId", getContactById);
