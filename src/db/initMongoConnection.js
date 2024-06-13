@@ -9,7 +9,7 @@ export const initMongoConnection = async () => {
       const db = env("MONGODB_DB");
 
       await mongoose.connect(
-        `mongodb+srv://${user}:${pwd}@${url}/${db}?retryWrites=true&w=majority`,
+        `mongodb+srv://${user}:${pwd}@${url}/${db}?retryWrites=true&w=majority&appName=Contacts`,
       );
       console.log("Mongo connection successfully established!");
     } catch (e) {
@@ -17,3 +17,6 @@ export const initMongoConnection = async () => {
       throw e;
     }
   };
+
+  //mongodb+srv://elenkinakh:8cGlaVg0RWmfZFFQ@contacts.scv6dti.mongodb.net/contacts?retryWrites=true&w=majority&appName=Contacts
+//`mongodb+srv://${user}:${pwd}@${url}/${db}?retryWrites=true&w=majority`
