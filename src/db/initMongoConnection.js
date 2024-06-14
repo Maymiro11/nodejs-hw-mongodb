@@ -18,5 +18,4 @@ export const initMongoConnection = async () => {
     }
   };
 
-  //mongodb+srv://elenkinakh:8cGlaVg0RWmfZFFQ@contacts.scv6dti.mongodb.net/contacts?retryWrites=true&w=majority&appName=Contacts
-//`mongodb+srv://${user}:${pwd}@${url}/${db}?retryWrites=true&w=majority`
+
