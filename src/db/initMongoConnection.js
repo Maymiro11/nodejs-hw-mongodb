@@ -3,8 +3,8 @@ import { env } from "../utils/env.js";
 
 export const initMongoConnection = async () => {
     try {
-      const user = env("MONGO_USER");
-      const pwd = env("MONGO_PASSWORD");
+      const user = env("MONGODB_USER");
+      const pwd = env("MONGODB_PASSWORD");
       const url = env("MONGODB_URL");
       const db = env("MONGODB_DB");
 
