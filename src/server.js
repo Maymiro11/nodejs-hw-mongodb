@@ -1,16 +1,21 @@
 import express from 'express';
-import cors from 'cors';
 import pino from 'pino-http';
-import { env } from './utils/env.js';
-import { ENV_VARS } from './constants/index.js';
-import { contactByIdController } from './controllers/contactByIdController.js';
-import { allContactsController } from './controllers/allContactsController.js';
+import cors from 'cors';
+
+import { PORT } from './constants/envConstants.js';
+import contactsRouter from './routers/contacts.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 export function setupServer() {
   const app = express();
-  const PORT = Number(env(ENV_VARS.PORT, 3000));
-
+  app.use(
+    express.json({
+      type: ['application/json', 'application/vnd.api+json'],
+      limit: '100kb',
+    }),
+  );
+  app.use(cors());
   app.use(
     pino({
       transport: {
@@ -19,13 +24,10 @@ export function setupServer() {
     }),
   );
 
-  app.use(cors());
-  app.use(express.json());
-
-  app.get('/contacts', allContactsController);
-  app.get('/contacts/:id', contactByIdController);
+  app.use(contactsRouter);
 
   app.use('*', notFoundHandler);
+  app.use(errorHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
